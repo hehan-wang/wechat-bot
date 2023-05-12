@@ -1,8 +1,8 @@
 node_modules
 WechatEveryDay.memory-card.json
-.env
+# .env
 test.js
 package-lock.json
 yarn.lock
 Chromium.app
-config.js
+# config.js
