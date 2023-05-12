@@ -2,7 +2,7 @@
 export const botName = '@鹤涵'
 
 // 群聊白名单，白名单内的群聊才会自动回复
-export const roomWhiteList = ['gpt测试']
+export const roomWhiteList = ['鹤涵AIGC交流群']
 
 // 联系人白名单，白名单内的联系人才会自动回复
-export const aliasWhiteList = ['备注名或微信名', 'master', '李四']
+export const aliasWhiteList = ['master']

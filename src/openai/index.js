@@ -6,6 +6,7 @@ const env = dotenv.config().parsed // 环境参数
 
 const configuration = new Configuration({
   apiKey: env.OPENAI_API_KEY,
+  basePath: "https://service-h4hg8dwm-1255528809.sg.apigw.tencentcs.com/v1"
 })
 const openai = new OpenAIApi(configuration)
 
@@ -41,7 +42,7 @@ export async function getOpenAiReply(prompt) {
       reply = markdownToText(response.data.choices[0].message.content)
   }
   console.log('🚀🚀🚀 / reply', reply)
-  return `${reply}\nVia ${chosen_model}`
+  return `${reply}\n`
 }
 
 function markdownToText(markdown) {
