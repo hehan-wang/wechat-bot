@@ -1,4 +1,4 @@
-ARG APT_SOURCE="default"
+ARG APT_SOURCE="aliyun"
 
 FROM node:19 as builder-default
 ENV NPM_REGISTRY="https://registry.npmjs.org"

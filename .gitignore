@@ -5,4 +5,5 @@ test.js
 package-lock.json
 yarn.lock
 Chromium.app
+.idea
 # config.js
