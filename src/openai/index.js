@@ -13,7 +13,8 @@ const openai = new OpenAIApi(configuration)
 export async function getOpenAiReply(prompt) {
   console.log('🚀🚀🚀 / prompt', prompt)
   //let chosen_model = 'text-davinci-003'
-  let chosen_model = 'gpt-3.5-turbo'
+  // let chosen_model = 'gpt-3.5-turbo'
+  let chosen_model = 'gpt-4'
   let reply = ''
   //'gpt-3.5-turbo',
   if (chosen_model == 'text-davinci-003'){
@@ -30,7 +31,7 @@ export async function getOpenAiReply(prompt) {
       })
 
       reply = markdownToText(response.data.choices[0].text)
-  } else if (chosen_model == 'gpt-3.5-turbo') {
+  } else {
     console.log('🚀🚀🚀 / Using model', chosen_model)
     const response = await openai.createChatCompletion({
         model: chosen_model,

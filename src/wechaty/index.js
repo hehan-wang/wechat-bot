@@ -1,6 +1,7 @@
 import { WechatyBuilder, ScanStatus, log } from 'wechaty'
 import qrTerminal from 'qrcode-terminal'
 import { defaultMessage, shardingMessage } from './sendMessage.js'
+import {roomWhiteList} from "../../config.js";
 // 扫码
 function onScan(qrcode, status) {
   if (status === ScanStatus.Waiting || status === ScanStatus.Timeout) {
@@ -49,6 +50,20 @@ async function onMessage(msg) {
   // await shardingMessage(msg,bot)
 }
 
+async function onRoomJoin(room, inviteeList, inviter) {
+  log.info( 'Bot', 'EVENT: room-join - Room "%s" got new member "%s", invited by "%s"',
+      await room.topic(),
+      inviteeList.map(c => c.name()).join(','),
+      inviter.name(),
+  )
+  console.log('bot room-join room id:', room.id)
+  const topic = await room.topic()
+  if (roomWhiteList.includes(topic)){
+    return
+  }
+  await room.say(`欢迎加入 ${topic}!`, inviteeList[0])
+}
+
 // 初始化机器人
 const CHROME_BIN = process.env.CHROME_BIN ? { endpoint: process.env.CHROME_BIN } : {}
 export const bot = WechatyBuilder.build({
@@ -71,6 +86,8 @@ bot.on('logout', onLogout)
 bot.on('message', onMessage)
 // 添加好友
 bot.on('friendship', onFriendShip)
+//加入群
+bot.on('room-join', onRoomJoin)
 
 // 启动微信机器人
 bot
